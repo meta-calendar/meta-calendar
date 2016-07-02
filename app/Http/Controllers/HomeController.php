@@ -39,6 +39,10 @@ class HomeController extends Controller
 
         $calendar = VObject\Reader::read($calendar_text);
 
+        foreach ($calendar->VEVENT as $event) {
+            $event = new 
+        }
+
         return view('welcome', ['calendar' => $calendar]);
     }
 }
