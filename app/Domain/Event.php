@@ -4,21 +4,39 @@ namespace App\Domain;
 
 class Event
 {
+    /**
+     * @var string
+     */
     private $summary;
+
+    /**
+     * @var \DateTimeInterface
+     */
     private $start;
+
+    /**
+     * @var \DateTimeInterface
+     */
     private $end;
+
+    /**
+     * @var string
+     */
     private $location;
+
+    /**
+     * @var string
+     */
     private $url;
 
     /**
-     * Event constructor.
-     * @param $summary
-     * @param $start
-     * @param $end
-     * @param $location
-     * @param $url
+     * @param string $summary
+     * @param \DateTimeInterface $start
+     * @param \DateTimeInterface $end
+     * @param string $location
+     * @param string $url
      */
-    public function __construct($summary, $start, $end, $location, $url) {
+    public function __construct($summary, \DateTimeInterface $start, \DateTimeInterface $end, $location, $url) {
         $this->summary = $summary;
         $this->start = $start;
         $this->end = $end;
@@ -27,38 +45,37 @@ class Event
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSummary() {
         return $this->summary;
     }
 
     /**
-     * @return mixed
+     * @return \DateTimeInterface
      */
     public function getStart() {
         return $this->start;
     }
 
     /**
-     * @return mixed
+     * @return \DateTimeInterface
      */
     public function getEnd() {
         return $this->end;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLocation() {
         return $this->location;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUrl() {
         return $this->url;
     }
-
 }
