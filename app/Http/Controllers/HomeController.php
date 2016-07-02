@@ -31,7 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('welcome');
     }
 
     public function events()
@@ -41,18 +41,17 @@ class HomeController extends Controller
 
         $calendar = VObject\Reader::read($calendar_text);
 
-        /*
+        $events = [];
         foreach ($calendar->VEVENT as $vevent) {
-            $event = new Event(
-                Carbon::crea$vevent->SUMMARY,
-                $vevent->DTSTART,
-                $end,
-                $location,
-                $url
+            $events[] = new Event(
+                (string)$vevent->SUMMARY,
+                new Carbon($vevent->DTSTART),
+                new Carbon($vevent->DTEND),
+                (string)$vevent->LOCATION,
+                (string)$calendar->VEVENT[0]->URL
             );
         }
-        */
 
-        return view('welcome', ['calendar' => $calendar]);
+        return response()->json($events);
     }
 }

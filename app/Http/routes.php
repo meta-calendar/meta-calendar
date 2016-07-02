@@ -12,10 +12,10 @@
 */
 
 Route::get('/', [
-    'as' => 'events',
-    'uses' => 'HomeController@events'
+    'as' => 'welcome',
+    'uses' => 'HomeController@welcome'
 ]);
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/api/events', 'EventsController@events');
