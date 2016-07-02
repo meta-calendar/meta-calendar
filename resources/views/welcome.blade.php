@@ -15,27 +15,29 @@
         </div>
     </div>
 </div>
+@endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
 
-<script id="event-template" type="template">
-<li>
-    <p>{{summary}}</p>
-    <p>{{start}} .. {{end}}</p>
-    <p><a href="{{url}}">Link</a></p>
-</li>
-</script>
+    <script id="event-template" type="template">
+        <li>
+            <p>@{{summary}}</p>
+            <p>@{{start}} .. @{{end}}</p>
+            <p><a href="@{{url}}">Link</a></p>
+        </li>
+    </script>
 
-<script>
-    jQuery(function () {
-       $.get('/api/events', function (events) {
-           var $events = $('#events'),
-               template = $('#event-template').html();
-           for (event in events) {
-              $events.append(Mustache.render(template, event))
-           }
-       });
-    });
-</script>
+    <script>
+        jQuery(function () {
+            $.get('/api/events', function (events) {
+                var $events = $('#events'),
+                        template = $('#event-template').html();
+                for (event in events) {
+                    $events.append(Mustache.render(template, event));
+                }
+            });
+        });
+    </script>
 
 @endsection
