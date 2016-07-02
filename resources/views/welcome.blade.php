@@ -40,7 +40,7 @@
                var $events = $('#events'),
                    template = $('#event-template').html();
                for (event in events) {
-                  $events.append(Mustache.render(template, event));
+                  $events.append(Mustache.render(template, events[event]));
                }
            });
         });
