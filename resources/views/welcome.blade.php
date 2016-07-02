@@ -57,9 +57,9 @@
                    toggle = 'odd';
                    
                for (event in events) {
-                   var newEnd = Date.parse(events[event].end);
+                   var newEnd = new Date(Date.parse(events[event].end));
                    event.end = newEnd.getUTCFullYear() +" "+ (newEnd.getUTCMonth()+1) +" "+ newEnd.getUTCDate();
-                   var newStart = Date.parse(events[event].start);
+                   var newStart = new Date(Date.parse(events[event].start));
                    event.start = newStart.getUTCFullYear() +" "+ (newStart.getUTCMonth()+1) +" "+ newStart.getUTCDate();
                    if(toggle === 'odd') {
                        $events.append(Mustache.render(templateOdd, events[event]));
