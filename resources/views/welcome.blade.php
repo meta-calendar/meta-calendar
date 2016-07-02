@@ -59,10 +59,10 @@
                for (event in events) {
                    if(toggle === 'odd') {
                        $events.append(Mustache.render(templateOdd, events[event]));
-                       toggle = even;
+                       toggle = 'even';
                    } else {
                        $events.append(Mustache.render(templateEven, events[event]));
-                       toggle = odd;
+                       toggle = 'odd';
                    }
                   
                }
