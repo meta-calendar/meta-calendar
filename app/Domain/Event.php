@@ -2,7 +2,7 @@
 
 namespace App\Domain;
 
-class Event
+class Event implements \JsonSerializable
 {
     /**
      * @var string
@@ -77,5 +77,20 @@ class Event
      */
     public function getUrl() {
         return $this->url;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize()
+    {
+        return array(
+            'summary' => $this->getSummary(),
+            // Dates in ISO 8601 format
+            'start' => $this->getStart()->format('c'),
+            'end' => $this->getEnd()->format('c'),
+            'location' => $this->getLocation(),
+            'url' => $this->getUrl()
+        );
     }
 }
