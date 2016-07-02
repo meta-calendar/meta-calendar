@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Domain;
+
 class Event
 {
     private $summary;

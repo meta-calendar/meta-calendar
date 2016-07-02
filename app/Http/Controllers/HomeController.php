@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Sabre\VObject;
+use App\Domain\Event;
 
 class HomeController extends Controller
 {
@@ -40,7 +41,7 @@ class HomeController extends Controller
         $calendar = VObject\Reader::read($calendar_text);
 
         foreach ($calendar->VEVENT as $event) {
-            $event = new 
+            $event = new Event();
         }
 
         return view('welcome', ['calendar' => $calendar]);
