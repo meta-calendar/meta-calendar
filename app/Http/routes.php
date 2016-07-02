@@ -18,4 +18,4 @@ Route::get('/', [
 
 Route::auth();
 
-Route::get('/api/events', 'EventsController@events');
+Route::get('/api/events', 'HomeController@events');
