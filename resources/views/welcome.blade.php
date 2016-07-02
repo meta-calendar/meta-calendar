@@ -58,9 +58,9 @@
                    
                for (event in events) {
                    var newEnd = new Date(Date.parse(events[event].end));
-                   events[event].end = newEnd.getUTCFullYear() +" "+ (newEnd.getUTCMonth()+1) +" "+ newEnd.getUTCDate();
+                   events[event].end = newEnd.getUTCDate() + "." + (newEnd.getUTCMonth()+1) + "." + newEnd.getUTCFullYear();
                    var newStart = new Date(Date.parse(events[event].start));
-                   events[event].start = newStart.getUTCFullYear() +" "+ (newStart.getUTCMonth()+1) +" "+ newStart.getUTCDate();
+                   events[event].start = newStart.getUTCDate() + "." + (newStart.getUTCMonth()+1) + "." + newStart.getUTCFullYear();
                    if(toggle === 'odd') {
                        $events.append(Mustache.render(templateOdd, events[event]));
                        toggle = 'even';
