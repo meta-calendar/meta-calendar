@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Sabre\VObject;
 use App\Domain\Event;
 
@@ -36,22 +35,20 @@ class HomeController extends Controller
 
     public function events()
     {
-        $calendar_url = $this->calendars['bonnjetzt'];
-        $calendar_text = file_get_contents($calendar_url);
-
-        $calendar = VObject\Reader::read($calendar_text);
-
         $events = [];
-        foreach ($calendar->VEVENT as $vevent) {
-            $events[] = new Event(
-                (string)$vevent->SUMMARY,
-                new Carbon($vevent->DTSTART),
-                new Carbon($vevent->DTEND),
-                (string)$vevent->LOCATION,
-                (string)$calendar->VEVENT[0]->URL
-            );
+        foreach ($this->calendars as $url) {
+            $calendar_text = file_get_contents($url);
+            $calendar = VObject\Reader::read($calendar_text);
+            foreach ($calendar->VEVENT as $vevent) {
+                $events[] = new Event(
+                    (string)$vevent->SUMMARY,
+                    new Carbon($vevent->DTSTART),
+                    new Carbon($vevent->DTEND),
+                    (string)$vevent->LOCATION,
+                    (string)$calendar->VEVENT[0]->URL
+                );
+            }
         }
-
         return response()->json($events);
     }
 }
