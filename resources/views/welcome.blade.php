@@ -8,22 +8,8 @@
                 <div class="panel-heading">Welcome</div>
 
                 <div class="panel-body">
-                    <ul>
-                        @foreach ($calendar->VEVENT as $event)
-                            <?php
-                            $start = $event->DTSTART;
-                            $end = $event->DTEND;
-                            ?>
-                            <li>
-                                Summary: {{$event->SUMMARY}}<br>
-                                Description: {{$event->DESCRIPTION}}<br>
 
-                                <pre>
-                                    {{$event->serialize()}}
-                                </pre>
-                            </li>
-                        @endforeach
-                    </ul>
+                    Your events
                 </div>
             </div>
         </div>
