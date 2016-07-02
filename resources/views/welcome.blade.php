@@ -8,10 +8,22 @@
                 <div class="panel-heading">Welcome</div>
 
                 <div class="panel-body">
-                    @foreach ($calendar->VEVENT as $event)
-                        <php var_dump($event) ?>
+                    <ul>
+                        @foreach ($calendar->VEVENT as $event)
+                            <?php
+                            $start = $event->DTSTART;
+                            $end = $event->DTEND;
+                            ?>
+                            <li>
+                                Summary: {{$event->SUMMARY}}<br>
+                                Description: {{$event->DESCRIPTION}}<br>
 
-                    @endforeach
+                                <pre>
+                                    {{$event->serialize()}}
+                                </pre>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
