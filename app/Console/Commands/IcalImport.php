@@ -3,11 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Sabre\VObject;
 
 class IcalImport extends Command
 {
     protected $calendars = [
-        'bonnjetzt' => 'http://bonn.jetzt/?plugin=all-in-one-event-calendar&amp;controller=ai1ec_exporter_controller&amp;action=export_events&amp;no_html=true'
+        'bonnjetzt' => 'http://bonn.jetzt/?plugin=all-in-one-event-calendar&controller=ai1ec_exporter_controller&action=export_events&no_html=true'
     ];
 
     /**
@@ -41,7 +42,10 @@ class IcalImport extends Command
      */
     public function handle()
     {
-        $calendar = $this->argument('calendar');
+        $calendar_url = $this->calendars[$this->argument('calendar')];
+        $calendar_text = file_get_contents($calendar_url);
+
+        $calendar = VObject\Reader::read($calendar_text);
         var_dump($calendar);
     }
 }

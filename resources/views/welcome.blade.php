@@ -8,7 +8,10 @@
                 <div class="panel-heading">Welcome</div>
 
                 <div class="panel-body">
-                    Your Application's Landing Page.
+                    @foreach ($calendar->VEVENT as $event)
+                        <php var_dump($event) ?>
+
+                    @endforeach
                 </div>
             </div>
         </div>
